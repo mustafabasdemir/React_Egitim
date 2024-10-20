@@ -1,8 +1,8 @@
 
 
-const Baslik = () => {
+const Baslik = ({veri}) => {
     return(
-        <div>baslik</div>
+        <div>{veri}</div>
     )
 }
 
