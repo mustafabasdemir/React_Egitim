@@ -1,6 +1,6 @@
 //components icinde tanımlı ogreyı ımport ettik
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import Baslik from "./components/baslik"
 // import Deneme from "./components/deneme"
 
@@ -78,14 +78,23 @@ function App() {
   /* useefect kulanımı */
 
   const [status,setStatus]=useState("deneme")
+  const firstRef = useRef(0);  /* input kutusunu ele alabiliriz asaghıda kullanım var */
 
   useEffect(()=>{   /* sayfa acıldıgında değisecek veriler için */
     setStatus("yazi baslangıcta degistirildi")
 
   },[])
 
+  const reffunc= ()=>
+  {
+    console.log("arama kutusu degeri  :",firstRef.current.value = 5)
+  }
   return(
-    <div>{status}</div>
+    <div>
+      {status}
+      <input type="text" ref={firstRef} placeholder="ara"></input>
+      <button onClick={reffunc}>tıkla</button>
+    </div>
   )
 
 }
