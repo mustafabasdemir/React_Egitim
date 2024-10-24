@@ -1,6 +1,10 @@
 //components icinde tanımlı ogreyı ımport ettik
-
+import { IoSearchSharp } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
+import Slider from "react-slick";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Detail from "./pages/Detail";
 // import Baslik from "./components/baslik"
 // import Deneme from "./components/deneme"
 
@@ -77,26 +81,41 @@ function App() {
 
   /* useefect kulanımı */
 
-  const [status,setStatus]=useState("deneme")
-  const firstRef = useRef(0);  /* input kutusunu ele alabiliriz asaghıda kullanım var */
+  // const [status,setStatus]=useState("deneme")
+  // const firstRef = useRef(0);  /* input kutusunu ele alabiliriz asaghıda kullanım var */
 
-  useEffect(()=>{   /* sayfa acıldıgında değisecek veriler için */
-    setStatus("yazi baslangıcta degistirildi")
+  // useEffect(()=>{   /* sayfa acıldıgında değisecek veriler için */
+  //   setStatus("yazi baslangıcta degistirildi")
 
-  },[])
+  // },[])
 
-  const reffunc= ()=>
-  {
-    console.log("arama kutusu degeri  :",firstRef.current.value = 5)
-  }
+  // const reffunc= ()=>
+  // {
+  //   console.log("arama kutusu degeri  :",firstRef.current.value = 5)
+  // }
+  // return(
+  //   <div>
+  //     {status}
+  //     <input type="text" ref={firstRef} placeholder="ara"></input>
+  //     <button onClick={reffunc}>tıkla</button>
+  //   </div>
+  // )
+
+
+
   return(
-    <div>
-      {status}
-      <input type="text" ref={firstRef} placeholder="ara"></input>
-      <button onClick={reffunc}>tıkla</button>
-    </div>
-  )
+    <>
+    <IoSearchSharp />
 
+
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="Detail/:id" element={<Detail />} />
+    </Routes>
+    </BrowserRouter>
+    </>
+  )
 }
 
 export default App;
