@@ -3,8 +3,8 @@ import arr from "../data"
 
 const Home =() =>{
 
-    const redirectFunc =()=>{
-        window.location ="/Detail"
+    const redirectFunc =(id)=>{
+        window.location = `/Detail/${id}`;
     }
 
 
