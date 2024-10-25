@@ -1,12 +1,14 @@
 //components icinde tanımlı ogreyı ımport ettik
-import { IoSearchSharp } from "react-icons/io5";
-import { useEffect, useRef, useState } from "react";
-import Slider from "react-slick";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Detail from "./pages/Detail";
+// import { IoSearchSharp } from "react-icons/io5";
+// import { useEffect, useRef, useState } from "react";
+// import Slider from "react-slick";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import Home from "./pages/Home";
+// import Detail from "./pages/Detail";
 // import Baslik from "./components/baslik"
 // import Deneme from "./components/deneme"
+
+import { useState } from "react";
 
  
 function App() {
@@ -100,20 +102,57 @@ function App() {
   //     <button onClick={reffunc}>tıkla</button>
   //   </div>
   // )
+  
 
+
+
+
+  // buton click ile array iiçine ekleme uygulaması todo app mantıgı 
+
+    const [text,setText]=useState("")
+    const [message,setMessage]=useState([])
+
+    const onChangeFunc =(e)=>{
+      setText(e.target.value)
+    }
+
+    const MessageFunc =()=>{
+      setMessage(prev=> [...prev,text])
+      setText('')
+    }
 
 
   return(
     <>
-    <IoSearchSharp />
+    {/* ıcon kutuphanesınden ıconu yukarı ımport edıp kullandık  */}
 
+    
+    {/* <IoSearchSharp />  */}
 
-    <BrowserRouter>
+    {/* router dom kutuphanesı ile sayfa gecis işlemleri */}
+
+    {/* <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="Detail/:id" element={<Detail />} />
     </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
+
+
+
+      {/* todo app mantıgı  */}
+
+      <input value={text} onChange={onChangeFunc} type="text" placeholder="ekle"/>
+      <button onClick={MessageFunc}>Listeye Ekle</button>
+      {
+
+        message?.map((msg,i)=>(
+          <div key={i}>{msg}</div>
+        ))
+
+      }
+
+
     </>
   )
 }
