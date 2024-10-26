@@ -8,7 +8,14 @@
 // import Baslik from "./components/baslik"
 // import Deneme from "./components/deneme"
 
-import { useState } from "react";
+import { type } from "@testing-library/user-event/dist/type";
+import { useDispatch, useSelector } from "react-redux";
+
+// import axios from "axios";
+// import { useEffect } from "react";
+// import { useState } from "react";
+
+// import { useState } from "react";
 
  
 function App() {
@@ -109,18 +116,44 @@ function App() {
 
   // buton click ile array iiçine ekleme uygulaması todo app mantıgı 
 
-    const [text,setText]=useState("")
-    const [message,setMessage]=useState([])
+    // const [text,setText]=useState("")
+    // const [message,setMessage]=useState([])
 
-    const onChangeFunc =(e)=>{
-      setText(e.target.value)
-    }
+    // const onChangeFunc =(e)=>{
+    //   setText(e.target.value)
+    // }
 
-    const MessageFunc =()=>{
-      setMessage(prev=> [...prev,text])
-      setText('')
-    }
+    // const MessageFunc =()=>{
+    //   setMessage(prev=> [...prev,text])
+    //   setText('')
+    // }
 
+
+  //axios ile country apiye baglanıp veri çekmek  
+  // const [country,setCountry] = useState([])
+
+  // useEffect(()=>{  //sayfa acıldıgında bu fonskyionu olustur
+  //   const getContry = async()=>{
+  //     const data = await axios.get('https://restcountries.com/v3.1/all')
+  //     setCountry(data)  //yukarıda country adındaki degiskeni setcountry ile degistir
+  //   //await ile gelen datanın hepsinin gelmesini bekledik
+  //   }
+  //   getContry()  //fonksiyonu cagır
+  // },[])
+
+  // console.log("country",country)
+
+
+  //redus kullanımı  
+
+  const dispatch = useDispatch()
+  const {init} = useSelector(state=> state.change)
+  console.log("object",init)
+
+
+  const getData =()=>{
+    dispatch({type:'CHANGE',payload:["deneme"]})
+  }
 
   return(
     <>
@@ -142,7 +175,7 @@ function App() {
 
       {/* todo app mantıgı  */}
 
-      <input value={text} onChange={onChangeFunc} type="text" placeholder="ekle"/>
+      {/* <input value={text} onChange={onChangeFunc} type="text" placeholder="ekle"/>
       <button onClick={MessageFunc}>Listeye Ekle</button>
       {
 
@@ -150,7 +183,22 @@ function App() {
           <div key={i}>{msg}</div>
         ))
 
-      }
+      } */}
+
+
+    {/* varsa country degerilerini ekrana yazalım */}
+
+    {/* {
+      country?.data?.map((ar,i)=>(
+        <div key={i}>{ar.name.common}</div>
+      ))
+    } */}
+
+
+  {/* redux kullanımı  */}
+
+  {init}
+  <button onClick={getData}>Verileri Al</button>
 
 
     </>
